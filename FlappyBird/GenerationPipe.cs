@@ -1,28 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
-using System.Timers;
-using System.Windows.Forms;
 
 namespace FlappyBird
 {
-    public partial class Form1 : Form
+    internal class GenerationPipe
     {
-        public Form1()
+        public async void AllPipe() 
         {
-            InitializeComponent();
-        }
-
-
-        private async void button1_Click(object sender, EventArgs e)
-        {
-            button1.Visible = false; // Уберает кнопку
             Random Random = new Random();
 
             int
@@ -33,7 +18,7 @@ namespace FlappyBird
                 xForPipe2 = 1200, // вторая труба выходит чуть позже, чтобы был интервал
                 yForPipe2 = Random.Next(-450, 0);
 
-            while (true)
+            while (true) // цикл генерации труб
             {
                 Pipe.Visible = true;
                 Pipe2.Visible = true;
@@ -57,11 +42,6 @@ namespace FlappyBird
 
                 await Task.Delay(timeChange); // делает паузу на сколько-то миллисекунд
             }
-        }
-
-        private void Pipe_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

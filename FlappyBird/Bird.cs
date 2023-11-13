@@ -13,32 +13,25 @@ namespace FlappyBird
     {
         private int x {  get; set; }
         private int y { get; set; }
-
-        Form1 form = new Form1();
-        async public void getLocation()
+        
+        float speed = 0;
+        public float GetMoveSpeed(float t)
         {
-
-            await Task.Run(() =>
+            while (speed < 9)
             {
-                while (true)
-                {
-                    this.x = form.label1.Location.X;
-                    this.y = form.label1.Location.Y;
-                    this.x++;
-                    this.y++;
-                    form.label1.Location = new Point(x, y);
-                }
-            });
-
-        }
-        public void Fall()
-        {
-            while (true)
-            {
-                x++;
-                y++;
-                form.label1.Location = new Point(x, y);
+                speed = (float)(2 * t + (2 * Math.Pow(t, 2) / 2));
+                return speed;
             }
+            return speed;
+        }
+        public float GetJumpSpeed(float t)
+        {
+            while (speed < 10)
+            {
+                speed = (float)(2 * t - (Math.Pow(t, 2) / 2));
+                return speed;
+            }
+            return speed;
         }
     }
 }

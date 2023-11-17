@@ -29,12 +29,38 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            this.mainBird = new System.Windows.Forms.PictureBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.mainBird)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // mainBird
+            // 
+            this.mainBird.Image = global::FlappyBird.Properties.Resources._15b17a7beb2911d;
+            this.mainBird.Location = new System.Drawing.Point(103, 149);
+            this.mainBird.Name = "mainBird";
+            this.mainBird.Size = new System.Drawing.Size(62, 54);
+            this.mainBird.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.mainBird.TabIndex = 3;
+            this.mainBird.TabStop = false;
+            // 
+            // Form1
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(486, 518);
+            this.Controls.Add(this.mainBird);
+            this.DoubleBuffered = true;
+            this.Name = "Form1";
             this.Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)(this.mainBird)).EndInit();
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+        private System.Windows.Forms.PictureBox mainBird;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

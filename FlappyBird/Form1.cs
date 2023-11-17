@@ -7,71 +7,43 @@ namespace FlappyBird
 {
     public partial class Form1 : Form
     {
-
-        public int x;
-        public int y;
+        Bird bird;
+        Physics physics;
+        int gravity = 0;
+        int a = 1;
         public Form1()
         {
             InitializeComponent();
             timer1 = new Timer();
             timer1.Interval = 15;
-            timer1.Tick += new EventHandler(Move);
+            timer1.Tick += new EventHandler(Update);
             timer1.Start();
-            this.KeyPress += new KeyPressEventHandler(Jump);
+            this.KeyDown += new KeyEventHandler(OnKeyboardPressed);
+            this.Width = 500;
+            this.Height = 550;
         }
 
-        Bird bird = new Bird();
-        private void Form1_Load(object sender, EventArgs e)
+        private void OnKeyboardPressed(object sender, KeyEventArgs e)
         {
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            
-        }
-        async public new void Move(object sender, EventArgs e)
-        {
-
-            float t = 0;
-            while (mainBird.Location.Y < 400)
+            switch(e.KeyCode.ToString())
             {
-                double s = bird.GetMoveSpeed(t);
-
-                t += 0.1f;
-                mainBird.Location = new Point(mainBird.Location.X, mainBird.Location.Y + (int)s);
-                label1.Text = s.ToString();
-                await Task.Delay(1);
+                case "Up":
+                    gravity = -10;
+                    break;
             }
         }
 
-        //async public new void Move(object sender, EventArgs e)
-        //{
-
-        //    float t = 0;
-        //    while (mainBird.Location.Y < 400)
-        //    {
-        //        double s = bird.GetMoveSpeed(t);
-
-        //        t += 0.1f;
-        //        mainBird.Location = new Point(mainBird.Location.X, mainBird.Location.Y + (int)s);
-        //        label1.Text = s.ToString();
-        //        await Task.Delay(1);
-        //    }
-        //}
-        public void Jump(object sender, KeyPressEventArgs e)
+        private void Update(object sender, EventArgs e)
         {
+            if (gravity < 10)
+                gravity += a;
 
-            float t = 0;
-            
-            if (e.KeyChar == (char)Keys.W)
+            mainBird.Location = new Point(mainBird.Location.X, mainBird.Location.Y + gravity);
+
+            if (mainBird.Location.Y > 450 | mainBird.Location.Y < 0 )
             {
-
-                double s = bird.GetJumpSpeed(t);
-
-                t += 0.1f;
-                mainBird.Location = new Point(mainBird.Location.X, mainBird.Location.Y + (int)s);
-                label3.Text = s.ToString();
-                    
+                a = 0;
+                gravity = 0;
             }
             
         }

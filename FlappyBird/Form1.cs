@@ -7,8 +7,6 @@ namespace FlappyBird
 {
     public partial class Form1 : Form
     {
-        Bird bird;
-        Physics physics;
         int gravity = 0;
         int a = 1;
         public Form1()
